@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Matt Warnock — Author of The Traveling Jessie Barstow</title>
+  <meta name="description" content="Matt Warnock is the author of The Traveling Jessie Barstow, a fantasy adventure about a girl who can vanish from one world into the next. Read the book, browse his publications, and follow the journal." />
+  <meta name="theme-color" content="#7c2d3a" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Matt Warnock" />
+  <meta property="og:title" content="Matt Warnock — Author of The Traveling Jessie Barstow" />
+  <meta property="og:description" content="A fantasy adventure about a girl who can vanish from one world into the next." />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%237c2d3a'/%3E%3Ctext x='50%25' y='50%25' dy='0.34em' text-anchor='middle' font-family='Georgia,serif' font-size='40' font-weight='600' fill='%23f6f1e7'%3EM%3C/text%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400..500&display=swap" />
+
+  <style>
+    :root{
+      --paper:#f7f2e8; --paper-deep:#efe6d4; --paper-card:#fbf8f1;
+      --ink:#211b17; --ink-soft:#4d433a; --ink-faint:#7a6f63;
+      --burgundy:#7c2d3a; --burgundy-deep:#5d1f29; --gold:#a8843f;
+      --rule:rgba(33,27,23,.14); --rule-strong:rgba(33,27,23,.28);
+      --font-display:"Fraunces",Georgia,serif; --font-body:"Newsreader",Georgia,serif;
+      --measure:38rem; --container:70rem; --radius:2px;
+      --space:clamp(1rem,.6rem + 2vw,2rem);
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:5rem}
+    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+    body{
+      margin:0;background-color:var(--paper);color:var(--ink);
+      font-family:var(--font-body);font-size:1.125rem;line-height:1.7;
+      background-image:radial-gradient(rgba(124,45,58,.025) 1px,transparent 1px),radial-gradient(rgba(33,27,23,.02) 1px,transparent 1px);
+      background-size:22px 22px,17px 17px;background-position:0 0,9px 9px;
+      text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;
+    }
+    h1,h2,h3{font-family:var(--font-display);font-weight:540;line-height:1.08;letter-spacing:-.012em;margin:0 0 .5em;font-variation-settings:"opsz" 40}
+    h1{font-size:clamp(2.4rem,1.6rem + 3.6vw,4rem)}
+    h2{font-size:clamp(1.8rem,1.3rem + 2vw,2.6rem)}
+    h3{font-size:clamp(1.3rem,1.1rem + .9vw,1.6rem)}
+    p{margin:0 0 1.1em}
+    a{color:var(--burgundy);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.18em;text-decoration-color:rgba(124,45,58,.4);transition:.18s}
+    a:hover{color:var(--burgundy-deep);text-decoration-color:var(--burgundy)}
+    em{font-style:italic} strong{font-weight:600}
+    :focus-visible{outline:2px solid var(--burgundy);outline-offset:3px}
+    .container{width:100%;max-width:var(--container);margin-inline:auto;padding-inline:var(--space)}
+    .container--narrow{max-width:52rem}
+    .section{padding-block:clamp(3rem,2rem + 6vw,6rem)}
+    .prose{max-width:var(--measure)}
+    .kicker{font-size:.8rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--burgundy);margin:0 0 1rem}
+    .ornament{display:flex;align-items:center;gap:.9rem;color:var(--gold);margin:0}
+    .ornament::before,.ornament::after{content:"";flex:1;height:1px;background:var(--rule-strong)}
+    .btn{display:inline-block;font-family:var(--font-body);font-size:.95rem;font-weight:500;letter-spacing:.04em;padding:.85em 1.7em;border-radius:var(--radius);text-decoration:none;cursor:pointer;transition:.18s;border:1px solid var(--burgundy)}
+    .btn--primary{background:var(--burgundy);color:var(--paper)}
+    .btn--primary:hover{background:var(--burgundy-deep);color:var(--paper);transform:translateY(-1px)}
+    .btn--ghost{background:transparent;color:var(--burgundy)}
+    .btn--ghost:hover{background:rgba(124,45,58,.07);color:var(--burgundy-deep)}
+    .text-center{text-align:center}
+
+    /* header */
+    .site-header{position:sticky;top:0;z-index:50;border-bottom:1px solid var(--rule);background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(6px)}
+    .site-header__inner{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:.9rem}
+    .wordmark{display:flex;flex-direction:column;line-height:1;text-decoration:none;color:var(--ink)}
+    .wordmark__name{font-family:var(--font-display);font-size:1.4rem;font-weight:560}
+    .wordmark__role{font-size:.68rem;letter-spacing:.32em;text-transform:uppercase;color:var(--burgundy);margin-top:.35rem}
+    .site-nav ul{list-style:none;display:flex;gap:clamp(.8rem,.4rem + 1.4vw,2rem);margin:0;padding:0}
+    .site-nav a{font-size:.95rem;color:var(--ink-soft);text-decoration:none;padding-bottom:2px;border-bottom:1px solid transparent}
+    .site-nav a:hover{color:var(--burgundy)}
+    @media (max-width:760px){
+      .site-header__inner{flex-direction:column;align-items:flex-start;gap:.6rem}
+      .site-nav{width:100%;overflow-x:auto}
+      .site-nav ul{gap:1.1rem;padding-bottom:.2rem}
+      .site-nav a{white-space:nowrap}
+    }
+
+    /* hero */
+    .hero{padding-block:clamp(2.5rem,1.5rem + 5vw,5.5rem)}
+    .hero__grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(2rem,1rem + 4vw,5rem);align-items:center}
+    .hero__lede{font-size:clamp(1.15rem,1.05rem + .5vw,1.4rem);color:var(--ink-soft);max-width:32rem;margin-top:1.4rem}
+    .hero__actions{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:2rem}
+
+    /* book cover */
+    .book-cover{position:relative;aspect-ratio:2/3;width:100%;max-width:340px;margin-inline:auto;border-radius:3px 5px 5px 3px;box-shadow:0 1px 1px rgba(33,27,23,.18),0 22px 40px -18px rgba(33,27,23,.55);transform:rotate(-1.4deg);transition:transform .4s}
+    .book-cover:hover{transform:rotate(0) translateY(-4px)}
+    .book-cover__spine{position:absolute;inset:0 auto 0 0;width:12px;border-radius:3px 0 0 3px;background:linear-gradient(90deg,rgba(0,0,0,.28),rgba(0,0,0,.04) 60%,rgba(255,255,255,.08));z-index:2}
+    .book-cover__face{position:absolute;inset:0;border-radius:3px 5px 5px 3px;background:radial-gradient(120% 80% at 50% 0%,#8a3441 0%,#6f2532 55%,#571c27 100%);color:#f3e7d4;display:flex;flex-direction:column;align-items:center;text-align:center;padding:13% 11%;overflow:hidden}
+    .book-cover__face::after{content:"";position:absolute;inset:7%;border:1px solid rgba(208,174,110,.55)}
+    .book-cover__author{letter-spacing:.24em;text-transform:uppercase;font-size:.66rem;margin:.4rem 0 auto;color:#e9cf9f}
+    .book-cover__title{font-family:var(--font-display);font-weight:560;font-size:clamp(1.4rem,1.1rem + 1.4vw,1.9rem);line-height:1.05;margin:0;color:#f6ecd9}
+    .book-cover__tag{font-style:italic;font-size:.82rem;margin:.7rem 0 auto;color:#e4c694}
+    .book-cover__star{color:#d3ad6c;font-size:.9rem;margin-bottom:.3rem}
+    .book-cover__rule{width:38%;height:1px;background:rgba(211,173,108,.6)}
+    .book-cover__rule--top{margin-bottom:.9rem}
+
+    /* book section */
+    .book{background:var(--paper-deep);border-block:1px solid var(--rule)}
+    .book__grid{display:grid;grid-template-columns:1fr 16rem;gap:clamp(2rem,1rem + 4vw,4.5rem);align-items:start}
+    .facts{list-style:none;margin:0;padding:1.6rem;background:var(--paper-card);border:1px solid var(--rule);border-radius:var(--radius)}
+    .facts li{display:flex;flex-direction:column;padding-block:.7rem;border-top:1px solid var(--rule);font-size:1.05rem}
+    .facts li:first-child{padding-top:0;border-top:0}
+    .facts span{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--burgundy);margin-bottom:.2rem}
+
+    /* author */
+    .author__grid{display:grid;grid-template-columns:12rem 1fr;gap:clamp(1.5rem,1rem + 3vw,3.5rem);align-items:center}
+    .portrait{aspect-ratio:1;border-radius:50%;background:radial-gradient(120% 120% at 30% 20%,#8a3441,#5d1f29);color:#efddc2;display:grid;place-items:center;font-family:var(--font-display);font-size:3rem;box-shadow:inset 0 0 0 1px rgba(208,174,110,.4),0 18px 30px -20px rgba(33,27,23,.6)}
+
+    /* publications */
+    .pubs{background:var(--paper-deep);border-block:1px solid var(--rule)}
+    .pub-list{list-style:none;margin:1.5rem 0 0;padding:0}
+    .pub{display:flex;align-items:baseline;justify-content:space-between;gap:1.5rem;padding-block:1.4rem;border-bottom:1px solid var(--rule)}
+    .pub:first-child{border-top:1px solid var(--rule)}
+    .pub__title{margin:0 0 .2rem;font-size:1.25rem}
+    .pub__meta{margin:0;color:var(--ink-soft);font-size:1rem}
+    .pub__year{font-family:var(--font-display);font-size:1.15rem;color:var(--ink-faint);white-space:nowrap}
+
+    /* journal */
+    .journal__card{display:block;max-width:var(--measure);padding:1.6rem;background:var(--paper-card);border:1px solid var(--rule);border-radius:var(--radius);text-decoration:none;color:var(--ink);transition:.2s}
+    .journal__card:hover{border-color:var(--rule-strong);transform:translateY(-2px)}
+    .journal__card time{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)}
+    .journal__card h3{margin:.5rem 0 .4rem}
+    .journal__card p{margin:0;color:var(--ink-soft);font-size:1rem}
+
+    /* contact */
+    .contact{background:var(--paper-deep);border-block:1px solid var(--rule)}
+    .form{margin-top:2rem;max-width:36rem}
+    .field{margin-bottom:1.3rem;display:flex;flex-direction:column}
+    .field label{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--burgundy);margin-bottom:.5rem}
+    .field input,.field textarea{font-family:var(--font-body);font-size:1.05rem;color:var(--ink);background:var(--paper-card);border:1px solid var(--rule-strong);border-radius:var(--radius);padding:.8rem .9rem;width:100%;transition:.18s}
+    .field input:focus,.field textarea:focus{outline:none;border-color:var(--burgundy);box-shadow:0 0 0 3px rgba(124,45,58,.14)}
+    .field textarea{resize:vertical;min-height:8rem}
+    .form__status{margin-top:1.1rem;min-height:1.4em;font-size:1rem}
+    .form__status.ok{color:#2f5d3a}
+
+    /* footer */
+    .site-footer{border-top:1px solid var(--rule);background:var(--paper-deep)}
+    .site-footer__inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.5rem;padding-block:2.4rem}
+    .site-footer__name{font-family:var(--font-display);font-size:1.3rem;margin:0}
+    .site-footer__tag{margin:.3rem 0 0;color:var(--ink-faint);font-size:.95rem}
+    .site-footer__nav{display:flex;flex-wrap:wrap;gap:1.5rem}
+    .site-footer__nav a{color:var(--ink-soft);text-decoration:none;font-size:.95rem}
+    .site-footer__base{border-top:1px solid var(--rule);padding-block:1.1rem}
+    .site-footer__base p{margin:0;font-size:.85rem;color:var(--ink-faint)}
+
+    .proto-banner{background:var(--burgundy);color:var(--paper);text-align:center;font-size:.82rem;letter-spacing:.04em;padding:.5rem 1rem}
+    .proto-banner a{color:#f0d9b8}
+
+    @media (max-width:820px){
+      .hero__grid{grid-template-columns:1fr}
+      .hero__cover{order:-1;max-width:240px;margin-inline:auto}
+      .book__grid{grid-template-columns:1fr}
+      .author__grid{grid-template-columns:1fr;text-align:center}
+      .portrait{width:9rem;margin-inline:auto}
+    }
+    @media (max-width:460px){.pub{flex-direction:column;gap:.3rem}}
+  </style>
+</head>
+<body>
+  <div class="proto-banner">Prototype preview for review — design &amp; content are works in progress.</div>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="#top" class="wordmark">
+        <span class="wordmark__name">Matt Warnock</span>
+        <span class="wordmark__role">Author</span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="#book">The Book</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#publications">Publications</a></li>
+          <li><a href="#journal">Journal</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero__grid">
+        <div>
+          <p class="kicker">The debut novel</p>
+          <h1>The Traveling<br />Jessie Barstow</h1>
+          <p class="hero__lede">Jessie can disappear. One blink and she's gone — pulled out of an ordinary afternoon and into somewhere else entirely. The trouble is, something is following her between the worlds, and it can smell fear.</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#book">Explore the book</a>
+            <a class="btn btn--ghost" href="#about">Meet the author</a>
+          </div>
+        </div>
+        <div class="hero__cover">
+          <div class="book-cover" role="img" aria-label="Book cover: The Traveling Jessie Barstow by Matt Warnock">
+            <div class="book-cover__spine"></div>
+            <div class="book-cover__face">
+              <span class="book-cover__rule book-cover__rule--top"></span>
+              <p class="book-cover__author">Matt Warnock</p>
+              <h3 class="book-cover__title">The Traveling Jessie Barstow</h3>
+              <p class="book-cover__tag">A Novel</p>
+              <span class="book-cover__star">✦</span>
+              <span class="book-cover__rule"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT THE BOOK -->
+    <section class="section book" id="book">
+      <div class="container book__grid">
+        <div class="prose">
+          <p class="kicker">About the book</p>
+          <h2>A door in the back of a magic shop</h2>
+          <p>When Jessie Barstow ducks into The Magic Mart to escape the boys chasing her home, she only means to hide. Instead she vanishes — really vanishes — into a fog-drowned forest a world away. It's happened before. It will happen again. And each time she lands somewhere stranger than the last.</p>
+          <p>But Jessie isn't the only one who can cross between places. Hooded figures with lantern eyes are hunting her by scent, and they have orders to deliver "the Traveler." To get home, Jessie will have to learn what she is before they find her first.</p>
+          <p><em>The Traveling Jessie Barstow</em> is a fast, warm-hearted fantasy adventure for readers who like their magic a little dangerous and their heroes a little braver than they feel.</p>
+          <p style="margin-top:1.6rem"><a class="btn btn--primary" href="#">Visit the book site</a></p>
+        </div>
+        <aside>
+          <ul class="facts">
+            <li><span>Genre</span> Fantasy / Adventure</li>
+            <li><span>Audience</span> Middle grade &amp; up</li>
+            <li><span>Format</span> Novel</li>
+            <li><span>Status</span> Coming soon</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- AUTHOR -->
+    <section class="section" id="about">
+      <div class="container author__grid">
+        <div class="portrait" aria-hidden="true"><span>MW</span></div>
+        <div class="prose">
+          <p class="kicker">The author</p>
+          <h2>Matt Warnock</h2>
+          <p>Matt Warnock writes fantasy and adventure stories about ordinary people who stumble into extraordinary trouble. <em>The Traveling Jessie Barstow</em> is his debut novel, alongside a handful of published short stories.</p>
+          <p><em>[Matt's bio goes here — a short paragraph in his own words, which we'll drop in.]</em></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PUBLICATIONS -->
+    <section class="section pubs" id="publications">
+      <div class="container">
+        <p class="kicker">Publications</p>
+        <h2>Books &amp; Stories</h2>
+        <ul class="pub-list">
+          <li class="pub">
+            <div><h3 class="pub__title">The Traveling Jessie Barstow</h3><p class="pub__meta">Novel &middot; <em>Debut</em></p></div>
+            <span class="pub__year">2026</span>
+          </li>
+          <li class="pub">
+            <div><h3 class="pub__title">The Lantern Keeper's Daughter</h3><p class="pub__meta">Short story &middot; <em>Hearthfire Quarterly</em></p></div>
+            <span class="pub__year">2024</span>
+          </li>
+          <li class="pub">
+            <div><h3 class="pub__title">Salt and Other Small Magics</h3><p class="pub__meta">Short story &middot; <em>Mythic Roads Anthology</em></p></div>
+            <span class="pub__year">2023</span>
+          </li>
+          <li class="pub">
+            <div><h3 class="pub__title">What the River Remembers</h3><p class="pub__meta">Flash fiction &middot; <em>Lamplight Review</em></p></div>
+            <span class="pub__year">2022</span>
+          </li>
+        </ul>
+        <p style="margin-top:1.4rem;color:var(--ink-soft)"><em>Placeholder titles — we'll replace these with Matt's real publication list.</em></p>
+      </div>
+    </section>
+
+    <!-- JOURNAL -->
+    <section class="section" id="journal">
+      <div class="container">
+        <p class="kicker">Journal</p>
+        <h2>From the journal</h2>
+        <a class="journal__card" href="#">
+          <time>June 14, 2026</time>
+          <h3>Welcome to the Journal</h3>
+          <p>A first note from Matt on the new website, the road to publishing The Traveling Jessie Barstow, and what to expect here.</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section contact" id="contact">
+      <div class="container container--narrow">
+        <p class="kicker">Contact</p>
+        <h2>Get in touch</h2>
+        <p class="prose" style="color:var(--ink-soft)">Questions about the book, event and visit requests, or a note from a reader — it all lands in Matt's inbox.</p>
+        <form class="form" id="contact-form" novalidate>
+          <div class="field"><label for="name">Name</label><input id="name" name="name" type="text" required /></div>
+          <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" required /></div>
+          <div class="field"><label for="message">Message</label><textarea id="message" name="message" rows="6" required></textarea></div>
+          <button type="submit" class="btn btn--primary">Send message</button>
+          <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <div>
+        <p class="site-footer__name">Matt Warnock</p>
+        <p class="site-footer__tag">Fantasy &amp; adventure fiction.</p>
+      </div>
+      <nav class="site-footer__nav" aria-label="Footer">
+        <a href="#about">About</a>
+        <a href="#publications">Publications</a>
+        <a href="#journal">Journal</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+    <div class="container site-footer__base"><p>&copy; 2026 Matt Warnock. All rights reserved.</p></div>
+  </footer>
+
+  <script>
+    // Prototype only: confirmation message, no backend (matches the book-site prototype).
+    var form = document.getElementById('contact-form');
+    var status = document.getElementById('form-status');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var name = form.name.value.trim(), email = form.email.value.trim(), msg = form.message.value.trim();
+      if(!name || !email || !msg){ status.textContent = 'Please fill in your name, email, and a message.'; status.className='form__status'; return; }
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){ status.textContent = "That email doesn't look right — mind checking it?"; status.className='form__status'; return; }
+      form.reset();
+      status.textContent = 'Thank you — this is a preview, so nothing was sent yet. The live site will deliver your message to Matt.';
+      status.className='form__status ok';
+    });
+  </script>
+</body>
+</html>
