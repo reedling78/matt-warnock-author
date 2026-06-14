@@ -4,14 +4,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Matt Warnock — Author of The Traveling Jessie Barstow</title>
-  <meta name="description" content="Matt Warnock is the author of The Traveling Jessie Barstow, a fantasy adventure about a girl who can vanish from one world into the next. Read the book, browse his publications, and follow the journal." />
+  <meta name="description" content="Matt Warnock is the author of The Traveling Jessie Barstow, a middle-grade portal-fantasy adventure about a girl who can vanish from one world into the next. Read the book, browse his publications, and follow the journal." />
   <meta name="theme-color" content="#7c2d3a" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Matt Warnock" />
   <meta property="og:title" content="Matt Warnock — Author of The Traveling Jessie Barstow" />
-  <meta property="og:description" content="A fantasy adventure about a girl who can vanish from one world into the next." />
+  <meta property="og:description" content="One ordinary girl. Infinite worlds. One door she never should have opened." />
+  <meta property="og:image" content="cover-web.jpg" />
 
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%237c2d3a'/%3E%3Ctext x='50%25' y='50%25' dy='0.34em' text-anchor='middle' font-family='Georgia,serif' font-size='40' font-weight='600' fill='%23f6f1e7'%3EM%3C/text%3E%3C/svg%3E" />
 
@@ -85,17 +86,9 @@
     .hero__actions{display:flex;flex-wrap:wrap;gap:.9rem;margin-top:2rem}
 
     /* book cover */
-    .book-cover{position:relative;aspect-ratio:2/3;width:100%;max-width:340px;margin-inline:auto;border-radius:3px 5px 5px 3px;box-shadow:0 1px 1px rgba(33,27,23,.18),0 22px 40px -18px rgba(33,27,23,.55);transform:rotate(-1.4deg);transition:transform .4s}
+    .book-cover{position:relative;width:100%;max-width:340px;margin-inline:auto;transform:rotate(-1.4deg);transition:transform .4s}
     .book-cover:hover{transform:rotate(0) translateY(-4px)}
-    .book-cover__spine{position:absolute;inset:0 auto 0 0;width:12px;border-radius:3px 0 0 3px;background:linear-gradient(90deg,rgba(0,0,0,.28),rgba(0,0,0,.04) 60%,rgba(255,255,255,.08));z-index:2}
-    .book-cover__face{position:absolute;inset:0;border-radius:3px 5px 5px 3px;background:radial-gradient(120% 80% at 50% 0%,#8a3441 0%,#6f2532 55%,#571c27 100%);color:#f3e7d4;display:flex;flex-direction:column;align-items:center;text-align:center;padding:13% 11%;overflow:hidden}
-    .book-cover__face::after{content:"";position:absolute;inset:7%;border:1px solid rgba(208,174,110,.55)}
-    .book-cover__author{letter-spacing:.24em;text-transform:uppercase;font-size:.66rem;margin:.4rem 0 auto;color:#e9cf9f}
-    .book-cover__title{font-family:var(--font-display);font-weight:560;font-size:clamp(1.4rem,1.1rem + 1.4vw,1.9rem);line-height:1.05;margin:0;color:#f6ecd9}
-    .book-cover__tag{font-style:italic;font-size:.82rem;margin:.7rem 0 auto;color:#e4c694}
-    .book-cover__star{color:#d3ad6c;font-size:.9rem;margin-bottom:.3rem}
-    .book-cover__rule{width:38%;height:1px;background:rgba(211,173,108,.6)}
-    .book-cover__rule--top{margin-bottom:.9rem}
+    .book-cover img{display:block;width:100%;height:auto;border-radius:4px;box-shadow:0 1px 1px rgba(33,27,23,.18),0 22px 40px -18px rgba(33,27,23,.55)}
 
     /* book section */
     .book{background:var(--paper-deep);border-block:1px solid var(--rule)}
@@ -185,25 +178,17 @@
     <section class="hero">
       <div class="container hero__grid">
         <div>
-          <p class="kicker">The debut novel</p>
+          <p class="kicker">The debut novel · A portal-fantasy adventure</p>
           <h1>The Traveling<br />Jessie Barstow</h1>
-          <p class="hero__lede">Jessie can disappear. One blink and she's gone — pulled out of an ordinary afternoon and into somewhere else entirely. The trouble is, something is following her between the worlds, and it can smell fear.</p>
+          <p class="hero__lede"><em>One ordinary girl. Infinite worlds. One door she never should have opened.</em> A middle-grade fantasy adventure about a girl who can vanish from one world into the next — and the things that hunt her in between.</p>
           <div class="hero__actions">
             <a class="btn btn--primary" href="#book">Explore the book</a>
             <a class="btn btn--ghost" href="#about">Meet the author</a>
           </div>
         </div>
         <div class="hero__cover">
-          <div class="book-cover" role="img" aria-label="Book cover: The Traveling Jessie Barstow by Matt Warnock">
-            <div class="book-cover__spine"></div>
-            <div class="book-cover__face">
-              <span class="book-cover__rule book-cover__rule--top"></span>
-              <p class="book-cover__author">Matt Warnock</p>
-              <h3 class="book-cover__title">The Traveling Jessie Barstow</h3>
-              <p class="book-cover__tag">A Novel</p>
-              <span class="book-cover__star">✦</span>
-              <span class="book-cover__rule"></span>
-            </div>
+          <div class="book-cover">
+            <img src="cover-web.jpg" width="700" height="1036" alt="Cover of The Traveling Jessie Barstow by Matt Warnock — a girl runs across a black-sand shore toward a glowing portal." />
           </div>
         </div>
       </div>
@@ -215,9 +200,10 @@
         <div class="prose">
           <p class="kicker">About the book</p>
           <h2>A door in the back of a magic shop</h2>
-          <p>When Jessie Barstow ducks into The Magic Mart to escape the boys chasing her home, she only means to hide. Instead she vanishes — really vanishes — into a fog-drowned forest a world away. It's happened before. It will happen again. And each time she lands somewhere stranger than the last.</p>
-          <p>But Jessie isn't the only one who can cross between places. Hooded figures with lantern eyes are hunting her by scent, and they have orders to deliver "the Traveler." To get home, Jessie will have to learn what she is before they find her first.</p>
-          <p><em>The Traveling Jessie Barstow</em> is a fast, warm-hearted fantasy adventure for readers who like their magic a little dangerous and their heroes a little braver than they feel.</p>
+          <p>Jessie Barstow is a perfectly ordinary girl — until the afternoon she ducks into a dusty magic shop to escape the things hunting her. Things that wear hoods and human faces, with eyes that glow like jack-o'-lanterns and far too many teeth.</p>
+          <p>When she vanishes from one world and reappears in another, Jessie discovers she's a <em>Traveler</em>, able to slip between worlds with a thought. But her gift is exactly what a power-hungry sorceress named Demora has been searching for — and she'll drain every world dry to claim it.</p>
+          <p>With the help of Martin, a down-on-his-luck magician who's about to remember that real magic exists, Jessie races across strange and wondrous worlds toward the Source of All Magic itself — where she'll decide the fate of every world, including her own.</p>
+          <blockquote style="margin:1.6em 0;padding-left:1.2em;border-left:3px solid var(--burgundy);font-style:italic;color:var(--ink-soft)">"Do you believe in magic?"</blockquote>
           <p style="margin-top:1.6rem"><a class="btn btn--primary" href="#">Visit the book site</a></p>
         </div>
         <aside>
