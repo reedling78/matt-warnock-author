@@ -1,0 +1,172 @@
+---
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/about", label: "About" },
+  { href: "/publications", label: "Publications" },
+  { href: "/blog", label: "Journal" },
+  { href: "/contact", label: "Contact" },
+];
+const isActive = (href: string) =>
+  href === "/" ? path === "/" : path === href || path.startsWith(href + "/");
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href="/" class="wordmark" aria-label="Matt Warnock — home">
+      <span class="wordmark__name">Matt Warnock</span>
+      <span class="wordmark__role">Author</span>
+    </a>
+
+    <button
+      class="nav-toggle"
+      aria-expanded="false"
+      aria-controls="primary-nav"
+      aria-label="Open menu"
+    >
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+    </button>
+
+    <nav id="primary-nav" class="site-nav" aria-label="Primary">
+      <ul>
+        {
+          links.map((l) => (
+            <li>
+              <a href={l.href} aria-current={isActive(l.href) ? "page" : undefined}>
+                {l.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--rule);
+    background: color-mix(in srgb, var(--paper) 85%, transparent);
+    backdrop-filter: blur(6px);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 1rem;
+  }
+
+  .wordmark {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .wordmark__name {
+    font-family: var(--font-display);
+    font-size: 1.45rem;
+    font-weight: 560;
+    letter-spacing: -0.01em;
+  }
+  .wordmark__role {
+    font-size: 0.7rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--burgundy);
+    margin-top: 0.35rem;
+  }
+
+  .site-nav ul {
+    list-style: none;
+    display: flex;
+    gap: clamp(1rem, 0.5rem + 1.6vw, 2.4rem);
+    margin: 0;
+    padding: 0;
+  }
+  .site-nav a {
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-soft);
+    text-decoration: none;
+    padding-bottom: 2px;
+    border-bottom: 1px solid transparent;
+  }
+  .site-nav a:hover { color: var(--burgundy); }
+  .site-nav a[aria-current="page"] {
+    color: var(--ink);
+    border-bottom-color: var(--burgundy);
+  }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    background: transparent;
+    border: 1px solid var(--rule-strong);
+    border-radius: var(--radius);
+    cursor: pointer;
+  }
+  .nav-toggle__bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    margin-inline: auto;
+    background: var(--ink);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  @media (max-width: 720px) {
+    .nav-toggle { display: flex; }
+    .site-nav {
+      position: absolute;
+      inset: 100% 0 auto 0;
+      background: var(--paper-card);
+      border-bottom: 1px solid var(--rule);
+      box-shadow: 0 16px 28px -22px rgba(33, 27, 23, 0.5);
+      display: none;
+    }
+    .site-nav.is-open { display: block; }
+    .site-nav ul {
+      flex-direction: column;
+      gap: 0;
+      padding: 0.5rem var(--space) 1rem;
+    }
+    .site-nav li { border-top: 1px solid var(--rule); }
+    .site-nav li:first-child { border-top: 0; }
+    .site-nav a {
+      display: block;
+      padding: 0.9rem 0;
+      font-size: 1.05rem;
+    }
+    .nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(2) { opacity: 0; }
+    .nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector(".nav-toggle");
+  const nav = document.getElementById("primary-nav");
+  if (toggle && nav) {
+    toggle.addEventListener("click", () => {
+      const open = nav.classList.toggle("is-open");
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    });
+  }
+</script>

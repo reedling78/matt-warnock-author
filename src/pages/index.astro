@@ -1,0 +1,287 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import BookCover from "../components/BookCover.astro";
+import { BOOK } from "../config";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 2);
+
+const dateFmt = (d: Date) =>
+  d.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+
+// Book structured data for richer search results.
+const bookSchema = {
+  "@context": "https://schema.org",
+  "@type": "Book",
+  name: BOOK.title,
+  author: { "@type": "Person", name: "Matt Warnock" },
+  genre: ["Fantasy", "Adventure", "Middle Grade"],
+  inLanguage: "en",
+  url: BOOK.siteUrl,
+};
+---
+
+<BaseLayout
+  title="Matt Warnock — Author of The Traveling Jessie Barstow"
+  description="Matt Warnock is the author of The Traveling Jessie Barstow, a middle-grade portal-fantasy adventure about a girl who can vanish from one world into the next. Read the book, browse his publications, and follow the journal."
+  image="/cover-web.jpg"
+  ogType="website"
+>
+  <script
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify(bookSchema)}
+  />
+
+  <!-- ============ HERO: the book leads ============ -->
+  <section class="hero">
+    <div class="container hero__grid">
+      <div class="hero__text">
+        <p class="kicker">The debut novel · A portal-fantasy adventure</p>
+        <h1>The Traveling<br />Jessie Barstow</h1>
+        <p class="hero__lede">
+          <em>One ordinary girl. Infinite worlds. One door she never should have
+          opened.</em> A middle-grade fantasy adventure about a girl who can vanish from
+          one world into the next — and the things that hunt her in between.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href={BOOK.siteUrl}>Explore the book</a>
+          <a class="btn btn--ghost" href="/about">Meet the author</a>
+        </div>
+      </div>
+      <div class="hero__cover">
+        <BookCover loading="eager" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT THE BOOK ============ -->
+  <section class="section book">
+    <div class="container book__grid">
+      <div class="book__body prose">
+        <p class="kicker">About the book</p>
+        <h2>A door in the back of a magic shop</h2>
+        <p>
+          Jessie Barstow is a perfectly ordinary girl — until the afternoon she ducks
+          into a dusty magic shop to escape the things hunting her. Things that wear
+          hoods and human faces, with eyes that glow like jack-o'-lanterns and far too
+          many teeth.
+        </p>
+        <p>
+          When she vanishes from one world and reappears in another, Jessie discovers
+          she's a <em>Traveler</em>, able to slip between worlds with a thought. But her
+          gift is exactly what a power-hungry sorceress named Demora has been searching
+          for — and she'll drain every world dry to claim it.
+        </p>
+        <p>
+          With the help of Martin, a down-on-his-luck magician who's about to remember
+          that real magic exists, Jessie races across strange and wondrous worlds toward
+          the Source of All Magic itself — where she'll decide the fate of every world,
+          including her own.
+        </p>
+        <blockquote>"Do you believe in magic?"</blockquote>
+        <p class="book__cta">
+          <a class="btn btn--primary" href={BOOK.siteUrl}>Visit the book site</a>
+        </p>
+      </div>
+      <aside class="book__aside">
+        <ul class="facts">
+          <li><span>Genre</span> Fantasy / Adventure</li>
+          <li><span>Audience</span> Middle grade &amp; up</li>
+          <li><span>Format</span> Novel</li>
+          <li><span>Status</span> {BOOK.available ? "Available now" : "Coming soon"}</li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ============ AUTHOR (secondary) ============ -->
+  <section class="section author">
+    <div class="container author__grid">
+      <div class="author__portrait" aria-hidden="true">
+        <span>MW</span>
+      </div>
+      <div class="author__text prose">
+        <p class="kicker">The author</p>
+        <h2>Matt Warnock</h2>
+        <p>
+          Matt Warnock writes fantasy and adventure stories about ordinary people who
+          stumble into extraordinary trouble. <em>The Traveling Jessie Barstow</em> is
+          his debut novel, alongside a handful of published short stories.
+        </p>
+        <p>
+          <a href="/about">Read more about Matt &rarr;</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FROM THE JOURNAL ============ -->
+  {
+    posts.length > 0 && (
+      <section class="section journal">
+        <div class="container">
+          <div class="journal__head">
+            <h2>From the journal</h2>
+            <a href="/blog">All entries &rarr;</a>
+          </div>
+          <ul class="journal__list">
+            {posts.map((post) => (
+              <li>
+                <a href={`/blog/${post.id}`} class="journal__card">
+                  <time datetime={post.data.pubDate.toISOString()}>
+                    {dateFmt(post.data.pubDate)}
+                  </time>
+                  <h3>{post.data.title}</h3>
+                  <p>{post.data.description}</p>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- ============ CONTACT CTA ============ -->
+  <section class="section cta">
+    <div class="container container--narrow text-center">
+      <p class="ornament"><span>✦</span></p>
+      <h2>Stay in touch</h2>
+      <p class="cta__text">
+        Questions, school and library visits, or just want to say hello? Matt would love
+        to hear from you.
+      </p>
+      <a class="btn btn--primary" href="/contact">Get in touch</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* hero */
+  .hero { padding-block: clamp(2.5rem, 1.5rem + 5vw, 5.5rem); }
+  .hero__grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: clamp(2rem, 1rem + 4vw, 5rem);
+    align-items: center;
+  }
+  .hero__lede {
+    font-size: clamp(1.15rem, 1.05rem + 0.5vw, 1.4rem);
+    color: var(--ink-soft);
+    max-width: 32rem;
+    margin-top: 1.4rem;
+  }
+  .hero__actions { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 2rem; }
+
+  /* about the book */
+  .book { background: var(--paper-deep); border-block: 1px solid var(--rule); }
+  .book__grid {
+    display: grid;
+    grid-template-columns: 1fr 16rem;
+    gap: clamp(2rem, 1rem + 4vw, 4.5rem);
+    align-items: start;
+  }
+  .book__cta { margin-top: 1.8rem; }
+  .facts {
+    list-style: none;
+    margin: 0;
+    padding: 1.6rem;
+    background: var(--paper-card);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+  }
+  .facts li {
+    display: flex;
+    flex-direction: column;
+    padding-block: 0.7rem;
+    border-top: 1px solid var(--rule);
+    font-size: 1.05rem;
+  }
+  .facts li:first-child { padding-top: 0; border-top: 0; }
+  .facts span {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--burgundy);
+    margin-bottom: 0.2rem;
+  }
+
+  /* author */
+  .author__grid {
+    display: grid;
+    grid-template-columns: 12rem 1fr;
+    gap: clamp(1.5rem, 1rem + 3vw, 3.5rem);
+    align-items: center;
+  }
+  .author__portrait {
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background:
+      radial-gradient(120% 120% at 30% 20%, #8a3441, #5d1f29);
+    color: #efddc2;
+    display: grid;
+    place-items: center;
+    font-family: var(--font-display);
+    font-size: 3rem;
+    letter-spacing: 0.04em;
+    box-shadow: inset 0 0 0 1px rgba(208, 174, 110, 0.4),
+      0 18px 30px -20px rgba(33, 27, 23, 0.6);
+  }
+
+  /* journal */
+  .journal { background: var(--paper-deep); border-block: 1px solid var(--rule); }
+  .journal__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.8rem;
+  }
+  .journal__head h2 { margin: 0; }
+  .journal__head a { white-space: nowrap; }
+  .journal__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.4rem;
+  }
+  .journal__card {
+    display: block;
+    height: 100%;
+    padding: 1.6rem;
+    background: var(--paper-card);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    text-decoration: none;
+    color: var(--ink);
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+  .journal__card:hover { border-color: var(--rule-strong); transform: translateY(-2px); }
+  .journal__card time {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .journal__card h3 { margin: 0.5rem 0 0.4rem; }
+  .journal__card p { margin: 0; color: var(--ink-soft); font-size: 1rem; }
+
+  /* cta */
+  .cta .ornament { max-width: 9rem; margin-inline: auto; margin-bottom: 1.4rem; }
+  .cta__text { color: var(--ink-soft); margin-bottom: 1.8rem; }
+
+  /* responsive */
+  @media (max-width: 820px) {
+    .hero__grid { grid-template-columns: 1fr; }
+    .hero__cover { order: -1; max-width: 260px; margin-inline: auto; }
+    .book__grid { grid-template-columns: 1fr; }
+    .author__grid { grid-template-columns: 1fr; text-align: center; }
+    .author__portrait { width: 9rem; margin-inline: auto; }
+    .journal__list { grid-template-columns: 1fr; }
+  }
+</style>

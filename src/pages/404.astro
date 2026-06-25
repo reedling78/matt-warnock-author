@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Page not found — Matt Warnock"
+  description="The page you're looking for has vanished."
+  noindex={true}
+>
+  <section class="section text-center">
+    <div class="container container--narrow">
+      <p class="kicker">Error 404</p>
+      <h1>This page has vanished</h1>
+      <p class="prose" style="margin-inline:auto;">
+        Like Jessie, it seems to have slipped off into another world. Let's get you back
+        to somewhere solid.
+      </p>
+      <p style="margin-top:1.6rem;">
+        <a class="btn btn--primary" href="/">Return home</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,71 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const dateFmt = (d: Date) =>
+  d.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+---
+
+<BaseLayout
+  title="Journal — Matt Warnock"
+  description="Notes from author Matt Warnock on writing, worldbuilding, and the road to publishing The Traveling Jessie Barstow."
+>
+  <section class="section">
+    <div class="container container--narrow">
+      <p class="kicker">Journal</p>
+      <h1>The Journal</h1>
+      <p class="lede prose">
+        Short notes between books — on craft, the worlds I'm building, and the
+        occasional look behind the curtain.
+      </p>
+
+      {
+        posts.length === 0 ? (
+          <p class="prose">No entries yet. Check back soon.</p>
+        ) : (
+          <ul class="post-list">
+            {posts.map((post) => (
+              <li class="post-item">
+                <a href={`/blog/${post.id}`}>
+                  <time datetime={post.data.pubDate.toISOString()}>
+                    {dateFmt(post.data.pubDate)}
+                  </time>
+                  <h2>{post.data.title}</h2>
+                  <p>{post.data.description}</p>
+                  <span class="post-item__more">Read entry &rarr;</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .lede { font-size: 1.2rem; color: var(--ink-soft); max-width: var(--measure); }
+  .post-list { list-style: none; margin: 2.6rem 0 0; padding: 0; }
+  .post-item { border-top: 1px solid var(--rule); }
+  .post-item:last-child { border-bottom: 1px solid var(--rule); }
+  .post-item a {
+    display: block;
+    padding-block: 2rem;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .post-item time {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .post-item h2 { margin: 0.5rem 0 0.5rem; font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); }
+  .post-item p { margin: 0 0 0.8rem; color: var(--ink-soft); max-width: var(--measure); }
+  .post-item__more { color: var(--burgundy); font-size: 0.95rem; }
+  .post-item a:hover h2 { color: var(--burgundy); }
+</style>

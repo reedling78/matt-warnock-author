@@ -1,0 +1,40 @@
+---
+// The book jacket. Image lives in /public/cover-web.jpg (700x1036).
+// The wrapper keeps the shadow + slight tilt.
+export interface Props {
+  loading?: "eager" | "lazy";
+}
+const { loading = "lazy" } = Astro.props;
+---
+
+<div class="book-cover">
+  <img
+    src="/cover-web.jpg"
+    width="700"
+    height="1036"
+    alt="Cover of The Traveling Jessie Barstow by Matt Warnock — a girl runs across a black-sand shore toward a glowing portal."
+    loading={loading}
+    decoding="async"
+  />
+</div>
+
+<style>
+  .book-cover {
+    position: relative;
+    width: 100%;
+    max-width: 340px;
+    margin-inline: auto;
+    transform: rotate(-1.4deg);
+    transition: transform 0.4s ease;
+  }
+  .book-cover:hover { transform: rotate(0deg) translateY(-4px); }
+  .book-cover img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow:
+      0 1px 1px rgba(33, 27, 23, 0.18),
+      0 22px 40px -18px rgba(33, 27, 23, 0.55);
+  }
+</style>

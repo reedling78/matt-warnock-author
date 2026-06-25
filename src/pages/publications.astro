@@ -1,0 +1,126 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import BookCover from "../components/BookCover.astro";
+import { BOOK, PUBLICATIONS } from "../config";
+---
+
+<BaseLayout
+  title="Publications — Matt Warnock"
+  description="The complete list of Matt Warnock's published work, including the novel The Traveling Jessie Barstow and his short fiction in anthologies and magazines."
+>
+  <section class="section">
+    <div class="container">
+      <p class="kicker">Publications</p>
+      <h1>Books &amp; Stories</h1>
+      <p class="lede prose">
+        Everything Matt has published, in one place.
+      </p>
+
+      <!-- Featured book -->
+      <div class="featured">
+        <div class="featured__cover"><BookCover /></div>
+        <div class="featured__body prose">
+          <p class="kicker">The novel</p>
+          <h2>{BOOK.title}</h2>
+          <p>
+            One ordinary girl. Infinite worlds. One door she never should have opened.
+            A middle-grade portal-fantasy adventure about a girl who discovers she can
+            slip between worlds — and the sorceress who would drain them dry to steal her
+            gift. The book has its own home on the web, with sample chapters and more.
+          </p>
+          <div class="featured__actions">
+            <a class="btn btn--primary" href={BOOK.siteUrl}>Visit the book site</a>
+            {
+              BOOK.buyUrl !== "#" && (
+                <a class="btn btn--ghost" href={BOOK.buyUrl}>Buy the book</a>
+              )
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Short fiction & other work -->
+      <div class="shorts">
+        <h2 class="shorts__title">Short fiction &amp; other work</h2>
+        <ul class="pub-list">
+          {
+            PUBLICATIONS.map((pub) => (
+              <li class="pub">
+                <div class="pub__main">
+                  <h3 class="pub__title">
+                    {pub.url && pub.url !== "#" ? (
+                      <a href={pub.url}>{pub.title}</a>
+                    ) : (
+                      pub.title
+                    )}
+                  </h3>
+                  <p class="pub__meta">
+                    {pub.type} &middot; <em>{pub.venue}</em>
+                  </p>
+                </div>
+                <span class="pub__year">{pub.year}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="shorts__note">
+          More on the way. Follow the <a href="/blog">journal</a> for new releases.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .lede {
+    font-size: 1.25rem;
+    color: var(--ink-soft);
+    max-width: var(--measure);
+  }
+
+  .featured {
+    display: grid;
+    grid-template-columns: 16rem 1fr;
+    gap: clamp(2rem, 1rem + 4vw, 4rem);
+    align-items: center;
+    margin: 3rem 0;
+    padding: clamp(1.5rem, 1rem + 2vw, 2.6rem);
+    background: var(--paper-deep);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+  }
+  .featured__actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.6rem; }
+
+  .shorts { margin-top: 3.5rem; }
+  .shorts__title {
+    padding-bottom: 0.8rem;
+    border-bottom: 2px solid var(--rule-strong);
+  }
+  .pub-list { list-style: none; margin: 0; padding: 0; }
+  .pub {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding-block: 1.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .pub__title { margin: 0 0 0.2rem; font-size: 1.3rem; }
+  .pub__meta { margin: 0; color: var(--ink-soft); font-size: 1rem; }
+  .pub__year {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--ink-faint);
+    white-space: nowrap;
+  }
+  .shorts__note { margin-top: 1.6rem; color: var(--ink-soft); }
+
+  @media (max-width: 720px) {
+    .featured { grid-template-columns: 1fr; text-align: center; }
+    .featured__cover { max-width: 220px; margin-inline: auto; }
+    .featured__actions { justify-content: center; }
+  }
+  @media (max-width: 460px) {
+    .pub { flex-direction: column; gap: 0.3rem; }
+  }
+</style>

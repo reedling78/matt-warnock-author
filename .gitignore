@@ -1,0 +1,15 @@
+# build output
+dist/
+.astro/
+
+# dependencies
+node_modules/
+functions/node_modules/
+
+# firebase
+.firebase/
+firebase-debug.log
+functions/.env
+
+# os
+.DS_Store
