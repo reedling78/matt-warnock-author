@@ -19,24 +19,17 @@ export const BOOK = {
 // Short stories & other publications. Add entries as they're published.
 export const PUBLICATIONS = [
   {
-    title: "The Lantern Keeper's Daughter",
-    venue: "Hearthfire Quarterly",
-    year: "2024",
+    title: "The Art of Dyeing",
+    venue: "Ossuary 13, Issue 2",
+    year: "Winter 2026",
     type: "Short story",
-    url: "#",
+    url: "https://ossuary13.com/",
   },
   {
-    title: "Salt and Other Small Magics",
-    venue: "Mythic Roads Anthology",
-    year: "2023",
+    title: "Scarecrows",
+    venue: "Ossuary 13, Issue 1",
+    year: "Fall 2026",
     type: "Short story",
-    url: "#",
-  },
-  {
-    title: "What the River Remembers",
-    venue: "Lamplight Review",
-    year: "2022",
-    type: "Flash fiction",
-    url: "#",
+    url: "https://ossuary13.com/",
   },
 ];

@@ -26,7 +26,7 @@ const bookSchema = {
 <BaseLayout
   title="Matt Warnock — Author of The Traveling Jessie Barstow"
   description="Matt Warnock is the author of The Traveling Jessie Barstow, a middle-grade portal-fantasy adventure about a girl who can vanish from one world into the next. Read the book, browse his publications, and follow the journal."
-  image="/cover-web.jpg"
+  image="/og/home.jpg"
   ogType="website"
 >
   <script
@@ -100,8 +100,8 @@ const bookSchema = {
   <!-- ============ AUTHOR (secondary) ============ -->
   <section class="section author">
     <div class="container author__grid">
-      <div class="author__portrait" aria-hidden="true">
-        <span>MW</span>
+      <div class="author__portrait">
+        <img src="/matt-portrait.jpg" width="900" height="900" alt="Matt Warnock" loading="lazy" decoding="async" />
       </div>
       <div class="author__text prose">
         <p class="kicker">The author</p>
@@ -284,4 +284,6 @@ const bookSchema = {
     .author__portrait { width: 9rem; margin-inline: auto; }
     .journal__list { grid-template-columns: 1fr; }
   }
+  .author__portrait { overflow: hidden; }
+  .author__portrait img { width: 100%; height: 100%; object-fit: cover; display: block; }
 </style>
