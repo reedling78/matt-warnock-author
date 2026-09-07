@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import BookCover from "../components/BookCover.astro";
-import { BOOK } from "../config";
+import { BOOK, RETAILERS } from "../config";
 import { getCollection } from "astro:content";
 
 const posts = (await getCollection("blog", ({ data }) => !data.draft))
@@ -87,11 +87,18 @@ const bookSchema = {
           including her own.
         </p>
         <blockquote>"Do you believe in magic?"</blockquote>
-        <p class="book__cta">
-          <a class="btn btn--primary" href={BOOK.buyUrl}>
-            {BOOK.available ? "Buy the book" : "Preorder the book"}
-          </a>
+        <div class="book__cta">
+          {RETAILERS.map((store) => (
+            <a class="btn btn--primary" href={store.url}>
+              {store.name}
+            </a>
+          ))}
+          <a class="btn btn--ghost" href={BOOK.buyUrl}>All retailers</a>
           <a class="btn btn--ghost" href={BOOK.siteUrl}>Visit the book site</a>
+        </div>
+        <p class="book__cta-note">
+          {BOOK.available ? "Buy" : "Preorder"} from your store of choice — more
+          storefronts, including Amazon, are on the way.
         </p>
       </div>
       <aside class="book__aside">
@@ -198,6 +205,11 @@ const bookSchema = {
     align-items: start;
   }
   .book__cta { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.8rem; }
+  .book__cta-note {
+    margin-top: 0.9rem;
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+  }
   .facts {
     list-style: none;
     margin: 0;

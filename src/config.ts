@@ -20,6 +20,15 @@ export const BOOK = {
   available: false, // set true on release day; flips "Preorder" copy to "Buy"
 };
 
+// Individual storefronts, shown as buttons alongside the universal link above.
+// Add Amazon here as soon as its product page is live.
+export const RETAILERS = [
+  {
+    name: "Barnes & Noble",
+    url: "https://www.barnesandnoble.com/w/the-traveling-jessie-barstow-matt-warnock/1151256570?ean=2940197475831",
+  },
+];
+
 // Short stories & other publications. Add entries as they're published.
 export const PUBLICATIONS = [
   {

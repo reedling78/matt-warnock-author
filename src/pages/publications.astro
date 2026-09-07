@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import BookCover from "../components/BookCover.astro";
-import { BOOK, PUBLICATIONS } from "../config";
+import { BOOK, PUBLICATIONS, RETAILERS } from "../config";
 ---
 
 <BaseLayout
@@ -31,9 +31,14 @@ import { BOOK, PUBLICATIONS } from "../config";
             gift. The book has its own home on the web, with sample chapters and more.
           </p>
           <div class="featured__actions">
+            {RETAILERS.map((store) => (
+              <a class="btn btn--primary" href={store.url}>
+                {store.name}
+              </a>
+            ))}
             {BOOK.buyUrl !== "#" && (
-              <a class="btn btn--primary" href={BOOK.buyUrl}>
-                {BOOK.available ? "Buy the book" : "Preorder the book"}
+              <a class="btn btn--ghost" href={BOOK.buyUrl}>
+                All retailers
               </a>
             )}
             <a class="btn btn--ghost" href={BOOK.siteUrl}>Visit the book site</a>
