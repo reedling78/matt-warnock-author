@@ -60,6 +60,15 @@ const personSchema = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    {/* Firebase always serves a site on its two default hosts as well as the
+        custom domain, and offers no way to disable or redirect them. The
+        canonical tag below tells crawlers which origin wins; this sends actual
+        humans holding an old link to the same path on the real domain. Must be
+        is:inline so Astro leaves it in the head instead of bundling it. */}
+    <script is:inline>
+      (function(){var h=location.hostname;if(["mattwarnockauthor.web.app","mattwarnockauthor.firebaseapp.com"].indexOf(h)>-1){location.replace("https://mattwarnockauthor.com"+location.pathname+location.search+location.hash);}})();
+    </script>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="generator" content={Astro.generator} />
 
