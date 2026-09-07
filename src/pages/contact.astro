@@ -131,6 +131,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         if (!res.ok) throw new Error(String(res.status));
         form.reset();
         setStatus("Thank you — your message is on its way. Matt will be in touch.", "success");
+        // GA4: only fires on a genuine 2xx from /api/contact, so this counts
+        // delivered messages rather than submit-button clicks.
+        (window as any).mwTrack?.("contact_submit", { status: "success" });
       } catch {
         setStatus(
           "Something went wrong sending your message. Please try again, or email Matt directly.",

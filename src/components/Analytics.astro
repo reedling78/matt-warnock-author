@@ -1,0 +1,49 @@
+---
+// GA4 tagging with Consent Mode v2.
+//
+// Order matters: the consent defaults must be pushed to dataLayer BEFORE
+// gtag.js is fetched, otherwise the tag writes cookies before it knows whether
+// it is allowed to. That is why this is an inline script and gtag.js is async
+// underneath it rather than the other way round.
+//
+// The same measurement ID is used on the book site — one GA4 property covers
+// both domains so cross-domain journeys stay a single session.
+import { ANALYTICS } from "../config";
+
+const id = ANALYTICS.measurementId;
+---
+
+{id && (
+  <>
+    <script is:inline define:vars={{ id }}>
+      window.MW_ANALYTICS = { measurementId: id, site: "author" };
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      window.gtag = gtag;
+
+      var stored = null;
+      try { stored = localStorage.getItem("mw-consent"); } catch (e) {}
+
+      gtag("consent", "default", {
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+        analytics_storage: "denied",
+        functionality_storage: "granted",
+        security_storage: "granted",
+        wait_for_update: 500,
+      });
+
+      if (stored === "granted") {
+        gtag("consent", "update", { analytics_storage: "granted" });
+      }
+
+      gtag("js", new Date());
+      gtag("config", id);
+    </script>
+
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${id}`}></script>
+    <script is:inline defer src="/analytics.js?v=1"></script>
+  </>
+)}

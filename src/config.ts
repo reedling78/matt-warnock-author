@@ -9,6 +9,14 @@ export const SITE = {
   domain: "https://mattwarnockauthor.com",
 };
 
+// Google Analytics 4. ONE property and ONE measurement ID covers BOTH sites —
+// that is what keeps an author-site -> book-site visit as a single session
+// instead of a fresh referral. The same ID is hard-coded in the book site's
+// index.html and 404.html; change all three together.
+export const ANALYTICS = {
+  measurementId: "G-9ZHBF7V80R", // e.g. "G-XXXXXXXXX" — empty disables tagging entirely
+};
+
 export const BOOK = {
   title: "The Traveling Jessie Barstow",
   // The book site, on its own custom domain (connected 2026-09-07).
