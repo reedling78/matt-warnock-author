@@ -7,6 +7,8 @@ import { BOOK, PUBLICATIONS } from "../config";
 <BaseLayout
   title="Publications — Matt Warnock"
   description="The complete list of Matt Warnock's published work, including the novel The Traveling Jessie Barstow and his short fiction in anthologies and magazines."
+  image="/og/book.jpg"
+  imageAlt="Cover of The Traveling Jessie Barstow by Matt Warnock."
 >
   <section class="section">
     <div class="container">
@@ -29,12 +31,12 @@ import { BOOK, PUBLICATIONS } from "../config";
             gift. The book has its own home on the web, with sample chapters and more.
           </p>
           <div class="featured__actions">
-            <a class="btn btn--primary" href={BOOK.siteUrl}>Visit the book site</a>
-            {
-              BOOK.buyUrl !== "#" && (
-                <a class="btn btn--ghost" href={BOOK.buyUrl}>Buy the book</a>
-              )
-            }
+            {BOOK.buyUrl !== "#" && (
+              <a class="btn btn--primary" href={BOOK.buyUrl}>
+                {BOOK.available ? "Buy the book" : "Preorder the book"}
+              </a>
+            )}
+            <a class="btn btn--ghost" href={BOOK.siteUrl}>Visit the book site</a>
           </div>
         </div>
       </div>

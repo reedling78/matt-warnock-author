@@ -20,13 +20,15 @@ const bookSchema = {
   genre: ["Fantasy", "Adventure", "Middle Grade"],
   inLanguage: "en",
   url: BOOK.siteUrl,
+  datePublished: BOOK.releaseDate,
 };
 ---
 
 <BaseLayout
   title="Matt Warnock — Author of The Traveling Jessie Barstow"
   description="Matt Warnock is the author of The Traveling Jessie Barstow, a middle-grade portal-fantasy adventure about a girl who can vanish from one world into the next. Read the book, browse his publications, and follow the journal."
-  image="/og/home.jpg"
+  image="/og/default.jpg"
+  imageAlt="Matt Warnock, author of The Traveling Jessie Barstow."
   ogType="website"
 >
   <script
@@ -47,7 +49,10 @@ const bookSchema = {
           one world into the next — and the things that hunt her in between.
         </p>
         <div class="hero__actions">
-          <a class="btn btn--primary" href={BOOK.siteUrl}>Explore the book</a>
+          <a class="btn btn--primary" href={BOOK.buyUrl}>
+            {BOOK.available ? "Buy the book" : "Preorder the book"}
+          </a>
+          <a class="btn btn--ghost" href={BOOK.siteUrl}>Explore the book</a>
           <a class="btn btn--ghost" href="/about">Meet the author</a>
         </div>
       </div>
@@ -83,7 +88,10 @@ const bookSchema = {
         </p>
         <blockquote>"Do you believe in magic?"</blockquote>
         <p class="book__cta">
-          <a class="btn btn--primary" href={BOOK.siteUrl}>Visit the book site</a>
+          <a class="btn btn--primary" href={BOOK.buyUrl}>
+            {BOOK.available ? "Buy the book" : "Preorder the book"}
+          </a>
+          <a class="btn btn--ghost" href={BOOK.siteUrl}>Visit the book site</a>
         </p>
       </div>
       <aside class="book__aside">
@@ -91,7 +99,12 @@ const bookSchema = {
           <li><span>Genre</span> Fantasy / Adventure</li>
           <li><span>Audience</span> Middle grade &amp; up</li>
           <li><span>Format</span> Novel</li>
-          <li><span>Status</span> {BOOK.available ? "Available now" : "Coming soon"}</li>
+          <li>
+            <span>Status</span>
+            {BOOK.available
+              ? "Available now"
+              : `Available ${BOOK.releaseDateLabel}`}
+          </li>
         </ul>
       </aside>
     </div>
@@ -184,7 +197,7 @@ const bookSchema = {
     gap: clamp(2rem, 1rem + 4vw, 4.5rem);
     align-items: start;
   }
-  .book__cta { margin-top: 1.8rem; }
+  .book__cta { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.8rem; }
   .facts {
     list-style: none;
     margin: 0;
