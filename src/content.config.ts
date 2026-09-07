@@ -11,6 +11,10 @@ const blog = defineCollection({
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
     draft: z.boolean().default(false),
+    // Optional per-post social card, e.g. "/og/journal.jpg". Falls back to the
+    // shared Journal card when omitted. Must be 1200x630 and live in /public.
+    ogImage: z.string().optional(),
+    ogImageAlt: z.string().optional(),
   }),
 });
 

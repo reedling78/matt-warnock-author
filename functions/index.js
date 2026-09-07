@@ -31,9 +31,10 @@ const SMTP_PASS = defineSecret("SMTP_PASS");
 // Non-secret config (set in functions/.env or the console)
 const SMTP_HOST = defineString("SMTP_HOST", { default: "smtp.gmail.com" });
 const SMTP_PORT = defineString("SMTP_PORT", { default: "465" });
-const CONTACT_TO = defineString("CONTACT_TO", { default: "matt@mattwarnockauthor.com" });
+const CONTACT_TO = defineString("CONTACT_TO", { default: "mwarnockauthor@gmail.com" });
 const CONTACT_FROM = defineString("CONTACT_FROM", {
-  default: "Matt Warnock Site <no-reply@mattwarnockauthor.com>",
+  // Must match SMTP_USER: Gmail rewrites From to the authenticated account.
+  default: "Matt Warnock Site <mwarnockauthor@gmail.com>",
 });
 
 const clean = (s) => String(s || "").trim();

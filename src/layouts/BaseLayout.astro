@@ -2,14 +2,20 @@
 import "../styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import { SITE } from "../config";
 
 export interface Props {
   title: string;
   description: string;
-  /** Path to an OG/social image inside /public, e.g. "/og/home.jpg" */
+  /** Path to an OG/social image inside /public, e.g. "/og/home.jpg". 1200x630. */
   image?: string;
+  /** Alt text for the social image. Read aloud by screen readers on X/Mastodon. */
+  imageAlt?: string;
   /** "website" | "article" */
   ogType?: string;
+  /** Articles only: ISO timestamps for article:published_time / modified_time. */
+  publishedTime?: string;
+  modifiedTime?: string;
   /** Set true on pages you don't want indexed (e.g. thank-you pages) */
   noindex?: boolean;
 }
@@ -17,14 +23,24 @@ export interface Props {
 const {
   title,
   description,
-  image = "/og/home.jpg",
+  image = "/og/default.jpg",
+  imageAlt = "Matt Warnock, author of The Traveling Jessie Barstow.",
   ogType = "website",
+  publishedTime,
+  modifiedTime,
   noindex = false,
 } = Astro.props;
 
 const siteName = "Matt Warnock";
-const canonical = new URL(Astro.url.pathname, Astro.site).href.replace(/\/$/, "") || Astro.site?.href;
+
+// Canonical: absolute, no trailing slash except at the root.
+const path = Astro.url.pathname.replace(/\/+$/, "") || "/";
+const canonical = new URL(path, Astro.site).href;
+
+// Social images must be ABSOLUTE URLs on a host that resolves — relative paths
+// and dead domains are the usual reason a link preview comes back blank.
 const socialImage = new URL(image, Astro.site).href;
+const imageType = image.endsWith(".png") ? "image/png" : "image/jpeg";
 
 // Site-wide author/person structured data for SEO (Google rich results).
 const personSchema = {
@@ -32,7 +48,8 @@ const personSchema = {
   "@type": "Person",
   name: "Matt Warnock",
   jobTitle: "Author",
-  url: Astro.site?.href,
+  url: SITE.domain,
+  image: new URL("/matt-portrait.jpg", Astro.site).href,
   description:
     "Matt Warnock is an author of fantasy and adventure fiction, including the novel The Traveling Jessie Barstow.",
 };
@@ -48,22 +65,49 @@ const personSchema = {
 
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="author" content="Matt Warnock" />
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
+    {!noindex && (
+      <meta
+        name="robots"
+        content="index, follow, max-image-preview:large, max-snippet:-1"
+      />
+    )}
 
     <!-- Open Graph -->
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={socialImage} />
+    <meta property="og:image:secure_url" content={socialImage} />
+    <meta property="og:image:type" content={imageType} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={imageAlt} />
 
-    <!-- Twitter -->
+    {ogType === "article" && (
+      <>
+        <meta property="article:author" content="Matt Warnock" />
+        <meta property="article:section" content="Journal" />
+        {publishedTime && (
+          <meta property="article:published_time" content={publishedTime} />
+        )}
+        {modifiedTime && (
+          <meta property="article:modified_time" content={modifiedTime} />
+        )}
+      </>
+    )}
+
+    <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content={imageAlt} />
 
     <meta name="theme-color" content="#7c2d3a" />
 

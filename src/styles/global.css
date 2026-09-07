@@ -46,6 +46,12 @@ html {
 
 body {
   margin: 0;
+  /* sticky footer: page fills the viewport, main takes the slack, footer
+     sits at the bottom on short pages and scrolls normally on long ones */
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
   background-color: var(--paper);
   /* faint paper grain via layered gradients — no external image */
   background-image:
@@ -60,6 +66,16 @@ body {
   font-weight: 400;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+}
+
+/* main absorbs any leftover vertical space so the footer never floats */
+body > main {
+  flex: 1 0 auto;
+}
+
+body > footer,
+body > .site-footer {
+  flex-shrink: 0;
 }
 
 /* ---------- headings ---------- */
