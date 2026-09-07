@@ -1,6 +1,6 @@
 ---
 title: "It’s a Kind of Magic"
-description: "Stories are magic."
+description: "Matt Warnock on the two kinds of magic inside a story — the telepathy that carries a scene from a writer’s head into a reader’s, and the surprise of discovery on the page."
 pubDate: 2026-08-18
 draft: false
 ---

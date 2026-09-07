@@ -1,6 +1,6 @@
 ---
 title: "Notes on Process"
-description: "Thoughts about my writing process."
+description: "Why Matt Warnock drafts by hand — pencil, notebook, and red X’s — what that did for The Traveling Jessie Barstow, and the one thing he regrets throwing away."
 pubDate: 2026-08-07
 draft: false
 ---

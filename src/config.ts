@@ -11,8 +11,11 @@ export const SITE = {
 
 export const BOOK = {
   title: "The Traveling Jessie Barstow",
-  // Replace with the live book site once it exists.
-  siteUrl: "https://thetravelingjessiebarstow.com",
+  // The book site. Points at the Firebase host that actually resolves today;
+  // switch to https://jessiebarstowbook.com once that custom domain is
+  // connected in Firebase Hosting. (thetravelingjessiebarstow.com was an
+  // unregistered placeholder and produced dead buttons on the live site.)
+  siteUrl: "https://jessiebarstow.web.app",
   // Books2Read universal link — sends readers to their retailer of choice.
   buyUrl: "https://books2read.com/u/b6noEW",
   releaseDate: "2026-09-14",
