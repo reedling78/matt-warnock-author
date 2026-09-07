@@ -4,18 +4,15 @@
 
 export const SITE = {
   authorName: "Matt Warnock",
-  // Keep in sync with `site` in astro.config.mjs.
-  // Switch to https://mattwarnockauthor.com once the custom domain is connected.
-  domain: "https://mattwarnockauthor.web.app",
+  // Keep in sync with `site` in astro.config.mjs. Custom domain connected
+  // 2026-09-07; this must always name a host that actually resolves.
+  domain: "https://mattwarnockauthor.com",
 };
 
 export const BOOK = {
   title: "The Traveling Jessie Barstow",
-  // The book site. Points at the Firebase host that actually resolves today;
-  // switch to https://jessiebarstowbook.com once that custom domain is
-  // connected in Firebase Hosting. (thetravelingjessiebarstow.com was an
-  // unregistered placeholder and produced dead buttons on the live site.)
-  siteUrl: "https://jessiebarstow.web.app",
+  // The book site, on its own custom domain (connected 2026-09-07).
+  siteUrl: "https://jessiebarstowbook.com",
   // Books2Read universal link — sends readers to their retailer of choice.
   buyUrl: "https://books2read.com/u/b6noEW",
   releaseDate: "2026-09-14",
