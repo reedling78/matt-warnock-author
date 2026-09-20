@@ -25,12 +25,15 @@ export const BOOK = {
   buyUrl: "https://books2read.com/u/b6noEW",
   releaseDate: "2026-09-14",
   releaseDateLabel: "September 14, 2026",
-  available: false, // set true on release day; flips "Preorder" copy to "Buy"
+  available: true, // flipped on release day (2026-09-14); swaps "Preorder" copy for "Order"
 };
 
 // Individual storefronts, shown as buttons alongside the universal link above.
-// Add Amazon here as soon as its product page is live.
 export const RETAILERS = [
+  {
+    name: "Amazon",
+    url: "https://www.amazon.com/Traveling-Jessie-Barstow-Matt-Warnock/dp/B0HJ6SVR5J",
+  },
   {
     name: "Barnes & Noble",
     url: "https://www.barnesandnoble.com/w/the-traveling-jessie-barstow-matt-warnock/1151256570?ean=2940197475831",

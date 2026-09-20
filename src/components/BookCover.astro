@@ -1,34 +1,39 @@
 ---
 // The book jacket. Image lives in /public/cover-web.jpg (800x1107).
-// The wrapper keeps the shadow + slight tilt.
+// The figure wraps the tilted jacket plus the cover-art credit line.
 export interface Props {
   loading?: "eager" | "lazy";
 }
 const { loading = "lazy" } = Astro.props;
 ---
 
-<div class="book-cover">
-  <img
-    src="/cover-web.jpg?v=2"
-    width="800"
-    height="1107"
-    alt="Cover of The Traveling Jessie Barstow by Matt Warnock — a girl runs across a black-sand shore toward a glowing portal."
-    loading={loading}
-    decoding="async"
-  />
-</div>
+<figure class="book-cover">
+  <div class="book-cover__jacket">
+    <img
+      src="/cover-web.jpg?v=2"
+      width="800"
+      height="1107"
+      alt="Cover of The Traveling Jessie Barstow by Matt Warnock — a girl runs across a black-sand shore toward a glowing portal."
+      loading={loading}
+      decoding="async"
+    />
+  </div>
+  <figcaption class="book-cover__credit">Art by Maria Botvinik.</figcaption>
+</figure>
 
 <style>
   .book-cover {
-    position: relative;
     width: 100%;
     max-width: 340px;
-    margin-inline: auto;
+    margin: 0 auto;
+  }
+  .book-cover__jacket {
+    position: relative;
     transform: rotate(-1.4deg);
     transition: transform 0.4s ease;
   }
-  .book-cover:hover { transform: rotate(0deg) translateY(-4px); }
-  .book-cover img {
+  .book-cover__jacket:hover { transform: rotate(0deg) translateY(-4px); }
+  .book-cover__jacket img {
     display: block;
     width: 100%;
     height: auto;
@@ -36,5 +41,14 @@ const { loading = "lazy" } = Astro.props;
     box-shadow:
       0 1px 1px rgba(33, 27, 23, 0.18),
       0 22px 40px -18px rgba(33, 27, 23, 0.55);
+  }
+  .book-cover__credit {
+    margin: 1.1rem 0 0;
+    text-align: center;
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-style: italic;
+    letter-spacing: 0.01em;
+    color: var(--ink-faint);
   }
 </style>
