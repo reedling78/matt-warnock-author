@@ -50,7 +50,7 @@ const bookSchema = {
         </p>
         <div class="hero__actions">
           <a class="btn btn--primary" href={BOOK.buyUrl}>
-            {BOOK.available ? "Buy the book" : "Preorder the book"}
+            {BOOK.available ? "Order the book" : "Preorder the book"}
           </a>
           <a class="btn btn--ghost" href={BOOK.siteUrl}>Explore the book</a>
           <a class="btn btn--ghost" href="/about">Meet the author</a>
@@ -97,8 +97,7 @@ const bookSchema = {
           <a class="btn btn--ghost" href={BOOK.siteUrl}>Visit the book site</a>
         </div>
         <p class="book__cta-note">
-          {BOOK.available ? "Buy" : "Preorder"} from your store of choice — more
-          storefronts, including Amazon, are on the way.
+          {BOOK.available ? "Order" : "Preorder"} from your store of choice.
         </p>
       </div>
       <aside class="book__aside">
